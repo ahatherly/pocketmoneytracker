@@ -1,0 +1,6 @@
+.invisible { visibility:hidden; }
+.tabs .tab-title.active a { background:#008cba; }
+.tab-title > a { border-right: 3px solid white; }
+#mainBody { padding-top: 20px; }
+#mainBody p { margin-bottom: 5px; }
+#menuLogo h1 { color:#A8CFDB; padding-left: 15px; font-size:1.3em; }

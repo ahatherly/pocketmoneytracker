@@ -1,0 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!doctype html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en" data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pocket Money Tracker</title>
+<link rel="stylesheet" href="css/foundation.css"/>
+<link rel="stylesheet" href="css/font-awesome.min.css"/>
+<link rel="stylesheet" href="css/foundation-datepicker.css"/>
+<link rel="stylesheet" href="css/pocketmoney.css"/>
+<script src="js/vendor/jquery.js"></script>
+<script src="js/foundation.min.js"></script>
+<script src="js/foundation-datepicker.js"></script>
+<script src="js/foundation/foundation.dropdown.js"></script>
+<script src="js/vendor/modernizr.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/mustache.js"></script>
+</head>
+<body>
+
