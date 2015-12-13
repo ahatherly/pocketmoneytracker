@@ -1,0 +1,8 @@
+{{#transactions}}
+<div class="row">
+    <div class="large-3 columns">{{date}}</div>
+    <div class="large-3 columns">{{category}}</div>
+    <div class="large-3 columns">{{name}}</div>
+    <div class="large-3 columns">{{amount}}</div>
+</div>
+{{/transactions}}

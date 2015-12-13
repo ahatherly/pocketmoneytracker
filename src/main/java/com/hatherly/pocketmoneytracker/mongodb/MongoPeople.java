@@ -9,6 +9,7 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 
 import com.hatherly.pocketmoneytracker.model.Person;
+import com.hatherly.pocketmoneytracker.model.PersonList;
 import com.hatherly.pocketmoneytracker.mongodb.converters.MongoPerson;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.model.Filters;
@@ -44,7 +45,7 @@ public class MongoPeople {
 		}
 	}
 	
-	public static List<Person> getPeople() {
+	public static PersonList getPeople() {
 		ArrayList<Person> people = new ArrayList<Person>();
 		MongoCursor<Document> cursor = Mongo.people().find().iterator();
 		try {
@@ -54,6 +55,6 @@ public class MongoPeople {
 		} finally {
 		    cursor.close();
 		}
-		return people;
+		return new PersonList(people);
 	}
 }

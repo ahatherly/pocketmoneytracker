@@ -3,5 +3,27 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
+  <display-name>Pocket Money Tracker</display-name>
+  
+  <servlet>
+    <servlet-name>People</servlet-name>
+    <servlet-class>com.hatherly.pocketmoneytracker.api.RetrievePeople</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Transactions</servlet-name>
+    <servlet-class>com.hatherly.pocketmoneytracker.api.RetrieveTransactions</servlet-class>
+  </servlet>
+    
+  <servlet-mapping>
+    <servlet-name>People</servlet-name>
+    <url-pattern>/people</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Transactions</servlet-name>
+    <url-pattern>/transactions</url-pattern>
+  </servlet-mapping>
+  
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
 </web-app>

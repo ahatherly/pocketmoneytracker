@@ -11,6 +11,7 @@ import org.bson.conversions.Bson;
 
 import com.hatherly.pocketmoneytracker.model.Person;
 import com.hatherly.pocketmoneytracker.model.Transaction;
+import com.hatherly.pocketmoneytracker.model.TransactionList;
 import com.hatherly.pocketmoneytracker.mongodb.converters.MongoPerson;
 import com.hatherly.pocketmoneytracker.mongodb.converters.MongoTransaction;
 import com.mongodb.client.MongoCursor;
@@ -38,7 +39,7 @@ public class MongoTransactions {
 		Mongo.transactions().updateOne(filter, update, options);		
 	}
 
-	public static List getTransactions(String personID, int offset, int count) {
+	public static TransactionList getTransactions(String personID, int offset, int count) {
 		ArrayList transactions = new ArrayList();
 		MongoCursor<Document> cursor = Mongo.transactions().find(eq("personID", personID))
 																  .sort(descending("date"))
@@ -51,6 +52,6 @@ public class MongoTransactions {
 		} finally {
 		    cursor.close();
 		}
-		return transactions;
+		return new TransactionList(transactions);
 	}
 }

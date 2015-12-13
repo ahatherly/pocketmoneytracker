@@ -18,6 +18,7 @@
 <script src="js/vendor/modernizr.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <script src="js/mustache.js"></script>
+<script src="js/pocketmoney.js"></script>
 </head>
 <body>
 
