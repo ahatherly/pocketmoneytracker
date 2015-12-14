@@ -1,0 +1,3 @@
+<img src="profileimage/{{id}}"/>
+<h2>{{name}}</h2>
+<div class="balance currency">{{balance}}</div>

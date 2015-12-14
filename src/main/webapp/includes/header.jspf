@@ -17,6 +17,9 @@
 <script src="js/foundation/foundation.dropdown.js"></script>
 <script src="js/vendor/modernizr.js"></script>
 <script src="js/jquery.cookie.js"></script>
+<script src="js/jquery.formatCurrency-1.4.0.min.js"></script>
+<script src="js/jquery.formatCurrency.en-GB.js"></script>
+<script src="js/renderFunctions.js"></script>
 <script src="js/mustache.js"></script>
 <script src="js/pocketmoney.js"></script>
 </head>

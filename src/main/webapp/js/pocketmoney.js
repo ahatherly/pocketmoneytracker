@@ -15,6 +15,9 @@ function updatePeople(data) {
 	console.log(data);
 	var peopleList = data['people'];
 	for (n=0; n<peopleList.length; n++) {
+		// Update the person section
+		loadSection('person','person'+(n+1), peopleList[n]);
+		// Load the transactions
 		loadTransactions(n+1, peopleList[n]['id']);
 	}
 }
@@ -32,7 +35,7 @@ function loadTransactions(index, pid) {
 	})
 	.done(function(data) {
 			updateTransactions(index, data);
-		  });
+		});
 }
 
 function updateTransactions(index, data) {
@@ -44,5 +47,7 @@ function loadSection(templateName, elementName, data) {
 		$.get('templates/'+templateName+'.mst', function(template) {
 		    var rendered = Mustache.render(template, data);
 		    $('#'+elementName).html(rendered);
+			// Apply currency formatting
+			$('.currency').formatCurrency({ colorize:true, region: 'en-GB' });
 	  });
 }
