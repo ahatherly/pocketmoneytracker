@@ -25,4 +25,16 @@ public class ServletUtils {
 			return 0;
 		}
 	}
+	
+	public static double readDoubleParameter(HttpServletRequest request, String key) {
+		String val = request.getParameter(key);
+		if (val == null) {
+			return 0;
+		}
+		try {
+			return Double.parseDouble(val);
+		} catch (NumberFormatException e) {
+			return 0;
+		}
+	}
 }

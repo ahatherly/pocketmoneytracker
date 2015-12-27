@@ -12,7 +12,7 @@ public class Person {
 	private String name = null;
 	private double balance = 0;
 	private double weeklyPocketMoneyAmount = 0;
-	private int dayOfWeekPocketMoneyPaid = 0; // Mon = 0, Tue = 1, ... , Sun = 6
+	private int dayOfWeekPocketMoneyPaid = 1; // Sunday = 1, Monday = 2, ... Saturday = 7
 	private String profilePictureBase64 = null;
 	
 	/**

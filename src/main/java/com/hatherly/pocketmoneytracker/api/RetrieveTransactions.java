@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.hatherly.pocketmoneytracker.model.Person;
 import com.hatherly.pocketmoneytracker.model.TransactionList;
 import com.hatherly.pocketmoneytracker.mongodb.MongoPeople;
@@ -47,9 +48,11 @@ public class RetrieveTransactions extends HttpServlet {
 	
 	private void doService(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String person_id = readParameter(request, "person_id");
+		int offset = readIntParameter(request, "offset");
 		//String result = retrievePerson(id);
-		Gson gson = new Gson();
-		TransactionList t = MongoTransactions.getTransactions(person_id, 0, 10);
+		Gson gson = new GsonBuilder()
+				.setDateFormat("dd MMM yyyy").create();
+		TransactionList t = MongoTransactions.getTransactions(person_id, offset, 10);
 		String result = gson.toJson(t);
 		OutputStream out = response.getOutputStream();
 		out.write(result.getBytes());

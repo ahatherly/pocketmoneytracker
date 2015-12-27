@@ -1,4 +1,4 @@
-<table>
+<table width="100%">
   <thead>
     <tr>
       <th>Date</th>
@@ -11,10 +11,21 @@
 	{{#transactions}}
 	<tr>
 	    <td>{{date}}</td>
-	    <td>{{category}}</td>
+	    <td>{{#renderFunctions.cat-icon}}{{category}}{{/renderFunctions.cat-icon}}</td>
 	    <td>{{name}}</td>
 	    <td class=".text-right currency">{{amount}}</td>
 	</tr>
 	{{/transactions}}
   </tbody>
 </table>
+<div class="row">
+	<div class="large-2 columns">
+		<div id="previous-{{index}}">&nbsp;</div>
+	</div>
+	<div class="large-8 columns text-center">
+		<div id="pager-{{index}}" class="text-center">&nbsp;</div>
+	</div>
+	<div class="large-2 columns text-right">
+		<div id="next-{{index}}" class="text-right">&nbsp;</div>
+	</div>
+</div>

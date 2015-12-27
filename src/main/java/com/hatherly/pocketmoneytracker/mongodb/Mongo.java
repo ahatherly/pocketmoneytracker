@@ -19,11 +19,14 @@ public class Mongo {
 	private MongoDatabase mongoDatabase = null;
 	
 	private Mongo() {
-		MongoClient mongoClient = new MongoClient();
+		MongoClient mongoClient = new MongoClient("192.168.10.103");
 		mongoDatabase = mongoClient.getDatabase("pocketmoneytracker");
 	}
 	public static MongoCollection people() {
 		return _instance.mongoDatabase.getCollection("people");
+	}
+	public static MongoCollection images() {
+		return _instance.mongoDatabase.getCollection("images");
 	}
 	public static MongoCollection transactions() {
 		return _instance.mongoDatabase.getCollection("transactions");

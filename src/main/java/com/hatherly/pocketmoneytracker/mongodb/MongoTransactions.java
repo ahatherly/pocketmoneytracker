@@ -4,6 +4,7 @@ import static com.mongodb.client.model.Filters.*;
 import static com.mongodb.client.model.Sorts.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.bson.Document;
@@ -14,6 +15,9 @@ import com.hatherly.pocketmoneytracker.model.Transaction;
 import com.hatherly.pocketmoneytracker.model.TransactionList;
 import com.hatherly.pocketmoneytracker.mongodb.converters.MongoPerson;
 import com.hatherly.pocketmoneytracker.mongodb.converters.MongoTransaction;
+import com.mongodb.DBCursor;
+import com.mongodb.client.AggregateIterable;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.UpdateOptions;
@@ -41,6 +45,9 @@ public class MongoTransactions {
 
 	public static TransactionList getTransactions(String personID, int offset, int count) {
 		ArrayList transactions = new ArrayList();
+		
+		int transactionCount = getTransactionCount(personID);
+		
 		MongoCursor<Document> cursor = Mongo.transactions().find(eq("personID", personID))
 																  .sort(descending("date"))
 																  .skip(offset).limit(count)
@@ -52,6 +59,23 @@ public class MongoTransactions {
 		} finally {
 		    cursor.close();
 		}
-		return new TransactionList(transactions);
+		return new TransactionList(transactions, transactionCount, offset, personID);
+	}
+	
+	private static int getTransactionCount(String person_id) {
+		ArrayList stages = new ArrayList();
+		
+		stages.add(new Document("$group", new Document("_id", "$personID")
+											.append("count", new Document("$sum", 1))));
+		
+		MongoCursor<Document> iterable = Mongo.transactions().aggregate(stages).iterator();
+		
+		while(iterable.hasNext()) {
+			Document d = iterable.next();
+			if (d.getString("_id").equals(person_id)) {
+				return d.getInteger("count");
+			}
+		}
+		return 0;
 	}
 }

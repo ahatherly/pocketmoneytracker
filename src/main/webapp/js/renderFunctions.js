@@ -1,30 +1,59 @@
-Number.prototype.formatMoney = function(c, d, t){
-var n = this, 
-    c = isNaN(c = Math.abs(c)) ? 2 : c, 
-    d = d == undefined ? "." : d, 
-    t = t == undefined ? "," : t, 
-    s = n < 0 ? "-" : "", 
-    i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", 
-    j = (j = i.length) > 3 ? j % 3 : 0;
-   return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "£1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
- };
 
 /* JSONP file containing rendering functions for use in moustache templates for specific field types */
 var renderFunctions = {
-		"currency": function () {
+		"cat-icon": function () {
 		    return function (text, render) {
-		    	//return render(text).formatMoney(2);
-		    	//return render(text);
-		    	return "Test";
+		    	var val = render(text);
+		    	if (val == 'reward') {
+		    		return render("<i class='fa fa-thumbs-up'></i>");
+		    	} else if (val == 'penalty') {
+		    		return render("<i class='fa fa-thumbs-down'></i>");
+		    	} else if (val == 'payment') {
+		    		return render("<i class='fa fa-money'></i>");
+		    	} else if (val == 'weekly') {
+		    		return render("<i class='fa fa-clock-o'></i>");
+		    	} else {
+		    		return val;
+		    	}
 		    }
-		  }
-		/*,
-		"boolean": function () {
-			return function (text, render) {
-		    	var val = render(text).trim();
-		    	if (val == "true") return "Yes";
-		    	if (val == "false") return "No";
-		    	return val;
-			}
-		  }*/
+		},
+		"day-of-week-dropdown": function () {
+			    return function (text, render) {
+			    	var result = "<select name='dayOfWeekPocketMoneyPaid'>";
+			    	var val = render(text);
+			    	console.log(val);
+			    	for (n=1; n<8; n++) {
+			    		result = result + "<option value='"+n+"' ";
+			    		if (n==val) result = result + "selected";
+			    		result = result + ">";
+			    		switch(n) {
+			    		case 1:
+			    			result = result + "Sunday";
+			    			break;
+			    		case 2:
+			    			result = result + "Monday";
+			    			break;
+			    		case 3:
+			    			result = result + "Tuesday";
+			    			break;
+			    		case 4:
+			    			result = result + "Wednesday";
+			    			break;
+			    		case 5:
+			    			result = result + "Thursday";
+			    			break;
+			    		case 6:
+			    			result = result + "Friday";
+			    			break;
+			    		case 7:
+			    			result = result + "Saturday";
+			    			break;
+			    		}
+			    		result = result + "</option>";
+			    	}
+			    	result = result + "</select>";
+			    	console.log(result);
+			    	return result;
+			    }
+		},
 }

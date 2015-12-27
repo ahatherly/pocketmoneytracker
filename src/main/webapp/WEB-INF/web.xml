@@ -13,6 +13,22 @@
     <servlet-name>Transactions</servlet-name>
     <servlet-class>com.hatherly.pocketmoneytracker.api.RetrieveTransactions</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>Upload</servlet-name>
+    <servlet-class>com.hatherly.pocketmoneytracker.api.Upload</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Image</servlet-name>
+    <servlet-class>com.hatherly.pocketmoneytracker.api.Image</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>StoreImage</servlet-name>
+    <servlet-class>com.hatherly.pocketmoneytracker.api.StoreImage</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddTransaction</servlet-name>
+    <servlet-class>com.hatherly.pocketmoneytracker.api.AddTransaction</servlet-class>
+  </servlet>
     
   <servlet-mapping>
     <servlet-name>People</servlet-name>
@@ -22,7 +38,25 @@
     <servlet-name>Transactions</servlet-name>
     <url-pattern>/transactions</url-pattern>
   </servlet-mapping>
-  
+  <servlet-mapping>
+    <servlet-name>AddTransaction</servlet-name>
+    <url-pattern>/addTransaction</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Upload</servlet-name>
+    <url-pattern>/upload</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Image</servlet-name>
+    <url-pattern>/image</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>StoreImage</servlet-name>
+    <url-pattern>/storeimage</url-pattern>
+  </servlet-mapping>
+  <session-config>
+  	 <session-timeout>30</session-timeout>
+  </session-config>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>

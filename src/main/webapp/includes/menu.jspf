@@ -7,7 +7,7 @@
 <div class="contain-to-grid fixed" id="appMenu">
 	<nav class="top-bar" data-topbar>
 	  <ul class="title-area">
-	    <li class="name" id="menuLogo"><h1><i class="fa fa-university"></i> Pocket Money Tracker</h1></li>
+	    <li class="name" id="menuLogo"><h1><a href="<%=request.getContextPath()%>"><i class="fa fa-university"></i> Pocket Money Tracker</a></h1></li>
 	     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
 	    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
 	  </ul>
@@ -15,17 +15,18 @@
 	  <section class="top-bar-section">
 	    <!-- Right Nav Section -->
 	    <ul class="right">
-	      <li id="menu-new"><a href="#"><i class="fa fa-plus"></i> New</a></li>
-	      <li id="menu-profile"><a href="profile.jsp"><i class="fa fa-user"></i> Profile</a></li>
+	      <!-- <li id="menu-new"><a href="#" data-reveal-id="rewardModal"><i class="fa fa-plus"></i> Reward</a></li>
+	      <li id="menu-new"><a href="#" data-reveal-id="rewardModal"><i class="fa fa-minus"></i> Penalty</a></li>
+	       -->
 	      <li class="has-dropdown">
-	        <a href="#">Advanced</a>
+	        <a href="#"><i class="fa fa-user"></i> Profile</a>
 	        <ul class="dropdown">
-	          <li><a href="#"><i class="fa fa-bar-chart-o"></i> Reporting</a></li>
-	          <li><a href="#"><i class="fa fa-check-square-o"></i> Audit</a></li>
-	          <li><a href="#"><i class="fa fa-cogs"></i> System Configuration</a></li>
+	          <li><a href="#"><i class="fa fa-user"></i> My Profile</a></li>
+	          <li><a href="#"><i class="fa fa-cogs"></i> User Configuration</a></li>
+	          <li><a href="#"><i class="fa fa-sign-out"></i> Log Out</a></li>
 	        </ul>
 	      </li>
-	      <li><a href="#" onClick="doLogout()"><i class="fa fa-sign-out"></i> Log Out</a></li>
+	      <!--<li><a href="#" onClick="doLogout()"><i class="fa fa-sign-out"></i> Log Out</a></li>-->
 	    </ul>
 	  </section>
 	</nav>

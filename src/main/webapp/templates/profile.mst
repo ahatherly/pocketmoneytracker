@@ -1,0 +1,38 @@
+	<div class="row">
+		<div class="large-6 columns">
+			<form action="upload" method="post" enctype="multipart/form-data">
+				<fieldset>
+				    <legend>Profile Picture</legend>
+				    <img src="image?image_id={{id}}"/>
+				    <input type="file" name="file" />
+				    <input type="hidden" name="person_id" value="{{id}}" />
+				    <input type="submit" class="small button" value="Upload" />
+				</fieldset>
+			</form>
+		</div>
+		<div class="large-6 columns">
+			<form action="updateProfile" method="post">
+			    <fieldset>
+				    <legend>Person Details</legend>
+				    <input type="hidden" name="person_id" value="{{id}}" />
+				    <label>Name:
+					      <input type="text" value="{{name}}" placeholder="Enter the name of the person...">
+					</label>
+					<label>Weekly Pocket Money Amount:
+					      <div class="row collapse prefix-round">
+						     <div class="small-2 columns">
+						       <a href="#" class="button prefix">&pound;</a>
+						     </div>
+						     <div class="small-10 columns">
+						       <input type="text" value="{{weeklyPocketMoneyAmount}}" placeholder="Enter the amount paid each week...">
+						     </div>
+						  </div>
+					</label>
+					<label>Payment Day:
+					    {{#renderFunctions.day-of-week-dropdown}}{{dayOfWeekPocketMoneyPaid}}{{/renderFunctions.day-of-week-dropdown}}
+					</label>
+				    <input type="submit" value="Save Changes" class="button" />
+			   	</fieldset>
+			</form>
+		</div>
+	</div>
