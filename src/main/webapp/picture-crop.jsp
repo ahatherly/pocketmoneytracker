@@ -19,7 +19,7 @@
 <hr/>
 <div class="row">
 <div class="large-6 columns">
-<p>&copy; Copyright 2015, Adam Hatherly</p>
+<p>&copy; Copyright 2016, Adam Hatherly</p>
 </div>
 </div>
 </div>
