@@ -4,6 +4,7 @@
 			    <fieldset>
 				    <legend>User: {{login}}</legend>
 					<div class="small-7 columns">
+						<input type="hidden" name="username" value="{{login}}">
 						<label>New password:
 						      <input type="password" name="password" value="">
 						</label>

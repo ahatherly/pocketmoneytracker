@@ -78,12 +78,12 @@ public class SecurityUtils {
     * @param con Connection An open connection to a databse
     * @param login String The login of the user
     * @param password String The password of the user
+	* @param personID String the ID of the person record this login relates to (or null for admin accounts)
     * @return boolean Returns true if the login and password are ok (not null and length(login)<=100
-    * @throws SQLException If the database is unavailable
     * @throws NoSuchAlgorithmException If the algorithm SHA-1 or the SecureRandom is not supported by the JVM
- * @throws UnsupportedEncodingException 
+    * @throws UnsupportedEncodingException 
     */
-   public boolean createUser(String login, String password, String personID)
+   public boolean createOrUpdateUser(String login, String password, String personID)
            throws NoSuchAlgorithmException, UnsupportedEncodingException
    {
        if (login!=null&&password!=null&&login.length()<=100){

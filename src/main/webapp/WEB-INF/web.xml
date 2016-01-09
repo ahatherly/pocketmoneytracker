@@ -54,7 +54,11 @@
     <servlet-name>RetrieveUsers</servlet-name>
     <servlet-class>com.hatherly.pocketmoneytracker.api.RetrieveUsers</servlet-class>
   </servlet>
-        
+  <servlet>
+    <servlet-name>ChangePassword</servlet-name>
+    <servlet-class>com.hatherly.pocketmoneytracker.api.ChangePassword</servlet-class>
+  </servlet>
+          
   <servlet-mapping>
     <servlet-name>People</servlet-name>
     <url-pattern>/people</url-pattern>
@@ -95,7 +99,11 @@
     <servlet-name>RetrieveUsers</servlet-name>
     <url-pattern>/users</url-pattern>
   </servlet-mapping>
-  
+  <servlet-mapping>
+    <servlet-name>ChangePassword</servlet-name>
+    <url-pattern>/changePassword</url-pattern>
+  </servlet-mapping>
+    
   <session-config>
   	 <session-timeout>30</session-timeout>
   </session-config>
