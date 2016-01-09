@@ -6,11 +6,11 @@
 
 <div id="mainBody">
 	<div class="row">
-		<div class="large-6 columns">
+		<div class="large-6 medium-6 columns">
 		<p id="person1"><img src="img/spinner.gif"/></p>
 		<p id="person1-transactions"><img src="img/spinner.gif"/></p>
 		</div>
-		<div class="large-6 columns">
+		<div class="large-6 medium-6 columns">
 		<p id="person2"><img src="img/spinner.gif"/></p>
 		<p id="person2-transactions"><img src="img/spinner.gif"/></p>
 		</div>
@@ -20,7 +20,7 @@
 	  <h2 id="modalTitle">Add a transaction</h2>
 	  
 	  <ul class="tabs" data-tab>
-		  <li class="tab-title active"><a href="#payment">Payment</a></li>
+		  <li class="tab-title active"><a href="#payment">Withdrawal</a></li>
 		  <li class="tab-title"><a href="#reward">Reward</a></li>
 		  <li class="tab-title"><a href="#penalty">Penalty</a></li>
 	  </ul>
@@ -103,19 +103,13 @@
 	  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
   </form>
 </div>
-<footer class="row">
-<div class="large-12 columns">
-<hr/>
-<div class="row">
-<div class="large-6 columns">
-<p>&copy; Copyright 2016, Adam Hatherly</p>
-</div>
-</div>
-</div>
-</footer>
+
+<%@include file="includes/footer.jspf" %>
+
 <script>
       $(document).foundation();
       $(document).ready(loadData);
+      $( "#logout-button" ).click(doLogout);
 </script>
 </body>
 </html>

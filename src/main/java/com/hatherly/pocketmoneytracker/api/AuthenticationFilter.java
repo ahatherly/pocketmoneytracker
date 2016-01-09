@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -29,8 +30,9 @@ public class AuthenticationFilter implements Filter {
          
         String uri = req.getRequestURI();
         //Logger.trace("Requested Resource::"+uri);
-         
-        if(uri.endsWith("login") || uri.endsWith("itk")) {
+        System.out.println("Requested Resource::"+uri);
+        
+        if(uri.endsWith("login") || uri.endsWith(".js") || uri.endsWith(".css")) {
         	// pass the request along the filter chain
             chain.doFilter(request, response);
         } else {
@@ -47,15 +49,15 @@ public class AuthenticationFilter implements Filter {
 	                chain.doFilter(request, response);
 	            } else {
 	            	//Logger.info("Unauthorized access request");
-	            	OutputStream out = response.getOutputStream();
-	    			out.write("{\"error\":\"Authentication Required\"}".getBytes());
-	            	// Stop processing the request
+	            	request.setAttribute("Message", "Please log in");
+					RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+					rd.forward(request, response);
 	            }
 	        } else {
 	        	//Logger.info("Session timed out");
-	        	OutputStream out = response.getOutputStream();
-				out.write("{\"error\":\"Session timed out\"}".getBytes());
-	        	// Stop processing the request
+				request.setAttribute("Message", "Session timed out - please log in again");
+				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+				rd.forward(request, response);
 	        }
         }
     }

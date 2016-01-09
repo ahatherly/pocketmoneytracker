@@ -1,9 +1,70 @@
+function doLogin() {
+	var credentials = {}
+	credentials['action'] = "login";
+	credentials['username'] = $("#username").val();
+	credentials['password'] = $("#password").val();
+	$.ajax({
+		dataType: "text",
+		type: "POST",
+		url: "/pocketmoneytracker/login",
+		data:credentials
+	})
+	.done(function(data) {
+		if (data == "OK") {
+			$.cookie('username', credentials['username']);
+			$.cookie('active', 'true');
+			document.location.href = './index.jsp';
+		} else {
+			$("#login-messages").html('<div data-alert class="alert-box alert round">Login or password incorrect</div>');
+		}
+	});
+}
+
+function doLogout() {
+	$.removeCookie('username');
+	$.removeCookie('active');
+	$.ajax({
+		dataType: "text",
+		url: "/pocketmoneytracker/login",
+		data:{}
+	})
+	.done(function(data) {
+		document.location.href = './login.jsp';
+	});
+}
+
+
 var people;
 
 function updateTransactionValues(person_id, balance) {
 	$('#payment-amount').val(balance);
 	$("input[name='person_id']").val(person_id);
 }
+
+// Load user page data
+function loadUserData() {
+	var doc = document.documentElement;
+	doc.setAttribute('data-useragent', navigator.userAgent);
+	
+	$.ajax({
+		dataType: "json",
+		url: "users"
+	})
+	.done(updateUser);
+}
+
+function updateUser(data) {
+	var username = $('#mainBody').attr('username');
+	
+	var userList = data['logins'];
+	for (n=0; n<userList.length; n++) {
+		var user = userList[n];
+		// Add a new div and load the user details template into it
+		$('#users').append('<div id=user_'+n+'></div>');
+		loadSection('user','user_'+n,user,false);
+	}
+}
+
 
 // Loads profile data
 function loadProfileData() {
@@ -20,11 +81,17 @@ function loadProfileData() {
 function updateProfile(data) {
 	var person_id = $('#mainBody').attr('personID');
 	var peopleList = data['people'];
+	var admin=$('#appMenu').attr('admin');
+	
 	for (n=0; n<peopleList.length; n++) {
 		var person = peopleList[n];
 		if (person.id == person_id) {
 			// Update the profile section
-			loadSection('profile','profileData', person, false);
+			if (admin == "true") {
+				loadSection('profile_admin','profileData', person, false);
+			} else {
+				loadSection('profile','profileData', person, false);
+			}
 		}
 	}
 }
@@ -43,9 +110,18 @@ function loadData() {
 
 function updatePeople(data) {
 	var peopleList = data['people'];
+	var admin=$('#appMenu').attr('admin');
+	var person_id=$('#appMenu').attr('person_id');
+	
 	for (n=0; n<peopleList.length; n++) {
 		// Update the person section
-		loadSection('person','person'+(n+1), peopleList[n], true);
+		if (admin == "true") {
+			loadSection('person_admin','person'+(n+1), peopleList[n], true);
+		} else if (person_id == peopleList[n].id) {
+			loadSection('person_me','person'+(n+1), peopleList[n], true);
+		} else {
+			loadSection('person','person'+(n+1), peopleList[n], true);
+		}
 		// Load the transactions
 		loadTransactions(n+1, peopleList[n]['id'], 0);
 	}
@@ -76,6 +152,7 @@ function updateTransactions(index, data) {
 
 function loadSection(templateName, elementName, data, loadPagers) {
 	  data.renderFunctions = renderFunctions;
+	  
 	  $.get('templates/'+templateName+'.mst', function(template) {
 		    var rendered = Mustache.render(template, data);
 		    $('#'+elementName).html(rendered);

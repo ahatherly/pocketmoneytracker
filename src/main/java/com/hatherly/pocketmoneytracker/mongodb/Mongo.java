@@ -34,7 +34,4 @@ public class Mongo {
 	public static MongoCollection logins() {
 		return _instance.mongoDatabase.getCollection("logins");
 	}
-	public static MongoCollection users() {
-		return _instance.mongoDatabase.getCollection("users");
-	}
 }

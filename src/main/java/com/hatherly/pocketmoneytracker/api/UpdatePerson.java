@@ -26,13 +26,13 @@ import static com.hatherly.pocketmoneytracker.api.ServletUtils.readDoubleParamet
 /**
  * Servlet implementation
  */
-public class AddTransaction extends HttpServlet {
+public class UpdatePerson extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddTransaction() {
+    public UpdatePerson() {
         super();
     }
 
@@ -53,35 +53,17 @@ public class AddTransaction extends HttpServlet {
 	private void doService(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
 		if (session.getAttribute("admin").equals("true")) {
-			
 			String person_id = readParameter(request, "person_id");
 			String name = readParameter(request, "name");
-			double amount = readDoubleParameter(request, "amount");
-			
-			String category = "";
-			if (readParameter(request, "payment") != null) {
-				category = "payment";
-				amount = amount * -1;
-				if (name == null) {
-					name = "Withdrawal";
-				}
-			} else if (readParameter(request, "reward") != null) {
-				category = "reward";
-				if (name == null) {
-					name = "Reward";
-				}
-			} else if (readParameter(request, "penalty") != null) {
-				category = "penalty";
-				amount = amount * -1;
-				if (name == null) {
-					name = "Penalty";
-				}
-			}
+			double amount = readDoubleParameter(request, "weeklyPocketMoneyAmount");
+			int day = readIntParameter(request, "dayOfWeekPocketMoneyPaid");
 			
 			Person p = MongoPeople.getPerson(person_id);
-			double new_balance = UpdateTransactions.addTransaction(p, name, amount, category);
-			//OutputStream out = response.getOutputStream();
-			//out.write(Double.toString(new_balance).getBytes());
+			p.setName(name);
+			p.setWeeklyPocketMoneyAmount(amount);
+			p.setDayOfWeekPocketMoneyPaid(day);
+			MongoPeople.updatePerson(p);
+			
 		}
 		response.sendRedirect("index.jsp");
 	}

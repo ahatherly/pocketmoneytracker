@@ -11,7 +11,6 @@
 <link rel="stylesheet" href="css/font-awesome.min.css"/>
 <link rel="stylesheet" href="css/foundation-datepicker.css"/>
 <link rel="stylesheet" href="css/pocketmoney.css"/>
-<!-- <link rel="stylesheet" href="css/jquery.fileupload.css"> -->
 <script src="js/vendor/jquery.js"></script>
 <script src="js/foundation.min.js"></script>
 <script src="js/foundation-datepicker.js"></script>
@@ -23,11 +22,6 @@
 <script src="js/renderFunctions.js"></script>
 <script src="js/mustache.js"></script>
 <script src="js/pocketmoney.js"></script>
-<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
-<!-- <script src="js/jquery.ui.widget.js"></script>
-<script src="js/jquery.iframe-transport.js"></script>
-<script src="js/jquery.fileupload.js"></script>
- -->
 <link rel="stylesheet" href="css/croppie.css" />
 <script src="js/croppie.js"></script>
 </head>

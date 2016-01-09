@@ -83,7 +83,7 @@ public class SecurityUtils {
     * @throws NoSuchAlgorithmException If the algorithm SHA-1 or the SecureRandom is not supported by the JVM
  * @throws UnsupportedEncodingException 
     */
-   public boolean createUser(String login, String password)
+   public boolean createUser(String login, String password, String personID)
            throws NoSuchAlgorithmException, UnsupportedEncodingException
    {
        if (login!=null&&password!=null&&login.length()<=100){
@@ -96,7 +96,7 @@ public class SecurityUtils {
            byte[] bDigest = getHash(ITERATION_NUMBER,password,bSalt);
            String sDigest = byteToBase64(bDigest);
            String sSalt = byteToBase64(bSalt);
-           MongoLogins.addLogin(new Login(login, sDigest, sSalt));
+           MongoLogins.addLogin(new Login(login, sDigest, sSalt, personID));
            return true;
        } else {
            return false;

@@ -4,15 +4,15 @@
 <%@include file="includes/header.jspf" %>
 <%@include file="includes/menu.jspf" %>
 
-<div id="mainBody" personID="<%= request.getParameter("person_id") %>">
-	 <div id="profileData"></div>
+<div id="mainBody" username="<%= session.getAttribute("username") %>" personID="<%= session.getAttribute("personID") %>">
+	 <div id="users"></div>
 </div>
 
 <%@include file="includes/footer.jspf" %>
 
 <script>
       $(document).foundation();
-      $(document).ready(loadProfileData);
+      $(document).ready(loadUserData);
 </script>
 </body>
 </html>

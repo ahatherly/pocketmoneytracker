@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.hatherly.pocketmoneytracker.mongodb.MongoLogins;
+
 import static com.hatherly.pocketmoneytracker.api.ServletUtils.readParameter;
 import static com.hatherly.pocketmoneytracker.api.ServletUtils.readIntParameter;
 
@@ -64,6 +66,18 @@ public class Login extends HttpServlet {
 					result = false;
 				}
 				if (result) {
+					com.hatherly.pocketmoneytracker.model.Login user = MongoLogins.getLogin(login);
+					if (user.getPersonID() == null) {
+						session.setAttribute("admin", "true");
+						session.setAttribute("personID", null);
+					} else {
+						if (user.getPersonID().length()==0) {
+							session.setAttribute("admin", "true");
+							session.setAttribute("personID", null);
+						}
+						session.setAttribute("admin", "false");
+						session.setAttribute("personID", user.getPersonID());
+					}
 					session.setAttribute("username", login);
 					session.setAttribute("authenticated", "true");
 					out.write("OK".getBytes());

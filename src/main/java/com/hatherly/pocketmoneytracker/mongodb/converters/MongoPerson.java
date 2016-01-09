@@ -1,12 +1,8 @@
 package com.hatherly.pocketmoneytracker.mongodb.converters;
 
-import static com.mongodb.client.model.Filters.eq;
-
 import org.bson.Document;
 
 import com.hatherly.pocketmoneytracker.model.Person;
-import com.hatherly.pocketmoneytracker.model.User;
-import com.hatherly.pocketmoneytracker.mongodb.Mongo;
 
 public class MongoPerson extends Document {
 	private Person person = null;

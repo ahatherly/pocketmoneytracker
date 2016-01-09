@@ -1,0 +1,18 @@
+<div class="person-section">
+	<ul class="button-group round">
+  		<li><a href="#" class="small button"
+			onclick="updateTransactionValues('{{id}}', '{{balance}}')"
+			data-reveal-id="transactionModal">Add Transaction</a></li>
+		
+		<li><a href="profile.jsp?person_id={{id}}" id="setImage" class="small button">Profile</a></li>
+	</ul>
+	<div class="row">
+		<div class="large-5 medium-5 small-5 columns">
+			<img src="image?image_id={{id}}"/>
+		</div>
+		<div class="large-7 medium-7 small-7 columns">
+			<h2>{{name}}</h2>
+			<div class="balance currency">{{balance}}</div>
+		</div>
+	</div>
+</div>

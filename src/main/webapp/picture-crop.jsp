@@ -14,16 +14,8 @@
 	</div>
 </div>
 
-<footer class="row">
-<div class="large-12 columns">
-<hr/>
-<div class="row">
-<div class="large-6 columns">
-<p>&copy; Copyright 2016, Adam Hatherly</p>
-</div>
-</div>
-</div>
-</footer>
+<%@include file="includes/footer.jspf" %>
+
 <script>
       $(document).foundation();
       var person_id="<%= request.getParameter("person_id") %>";

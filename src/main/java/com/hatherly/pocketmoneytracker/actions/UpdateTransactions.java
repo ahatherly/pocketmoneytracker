@@ -24,6 +24,16 @@ public class UpdateTransactions {
 		return balance;
 	}
 	
+	public static double removeTransaction(Person p, String transaction_id) {
+		Transaction t = MongoTransactions.getTransaction(transaction_id);
+		// And update the balance
+		double new_balance = p.getBalance() - t.getAmount();
+		p.setBalance(new_balance);
+		MongoTransactions.deleteTransaction(transaction_id);
+		MongoPeople.updatePerson(p);
+		return new_balance;
+	}
+	
 	public static double addTransaction(Person p, Transaction t) {
 		// Add the transaction
 		MongoTransactions.updateTransaction(t);
