@@ -42,6 +42,19 @@ public class MongoTransactions {
 		// And do the upsert
 		Mongo.transactions().updateOne(filter, update, options);		
 	}
+	
+	public static Transaction getTransaction(String id) {
+		Document result = (Document)Mongo.transactions().find(eq("_id", id)).first();
+		if (result != null) {
+			return MongoTransaction.transaction(result);
+		} else {
+			return null;
+		}
+	}
+	
+	public static void deleteTransaction(String id) {
+		Mongo.transactions().deleteOne(eq("_id", id));
+	}
 
 	public static TransactionList getTransactions(String personID, int offset, int count) {
 		ArrayList transactions = new ArrayList();

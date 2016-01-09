@@ -17,17 +17,20 @@ public class UpdateTransactions {
 	 */
 	public static double addTransaction(Person p, String name, double amount, String category) {
 		Date date = new Date();
-		
-		// Add the transaction
+		// Create the transaction
 		Transaction t = new Transaction(p.getId(), date, amount, name, category);
-		MongoTransactions.updateTransaction(t);
-		
-		// And update the balance
-		double balance = p.getBalance() + amount;
-		p.setBalance(balance);
-		MongoPeople.updatePerson(p);
-		
+		// Add it
+		double balance = addTransaction(p, t);
 		return balance;
 	}
-
+	
+	public static double addTransaction(Person p, Transaction t) {
+		// Add the transaction
+		MongoTransactions.updateTransaction(t);
+		// And update the balance
+		double balance = p.getBalance() + t.getAmount();
+		p.setBalance(balance);
+		MongoPeople.updatePerson(p);
+		return balance;
+	}
 }

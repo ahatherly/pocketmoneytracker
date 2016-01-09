@@ -29,6 +29,10 @@
     <servlet-name>AddTransaction</servlet-name>
     <servlet-class>com.hatherly.pocketmoneytracker.api.AddTransaction</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>Scheduler</servlet-name>
+    <servlet-class>com.hatherly.pocketmoneytracker.api.Scheduler</servlet-class>
+  </servlet>
     
   <servlet-mapping>
     <servlet-name>People</servlet-name>
@@ -53,6 +57,10 @@
   <servlet-mapping>
     <servlet-name>StoreImage</servlet-name>
     <url-pattern>/storeimage</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Scheduler</servlet-name>
+    <url-pattern>/scheduler</url-pattern>
   </servlet-mapping>
   <session-config>
   	 <session-timeout>30</session-timeout>
