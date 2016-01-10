@@ -31,7 +31,8 @@ public class PayWeeklyPocketMoney {
 		PersonList l = MongoPeople.getPeople();
 		for (Person p : l.getPeople()) {
 			if (p.getDayOfWeekPocketMoneyPaid() == day) {
-				Transaction existing_txn = MongoTransactions.getTransaction(date_key);
+				String key = date_key + "_" + p.getId();
+				Transaction existing_txn = MongoTransactions.getTransaction(key);
 				if (existing_txn == null) {
 					// Pocket money for today hasn't been added yet, so add it now.
 					Transaction t = new Transaction(p.getId(),
@@ -39,9 +40,9 @@ public class PayWeeklyPocketMoney {
 													p.getWeeklyPocketMoneyAmount(),
 													"Weekly Pockey Money",
 													"weekly");
-					t.setId(date_key);
+					t.setId(key);
 					UpdateTransactions.addTransaction(p, t);
-					messages = messages + date_to_check + " - paid weekly pocket money of £"+
+					messages = messages + date_to_check + " - paid weekly pocket money of ï¿½"+
 												p.getWeeklyPocketMoneyAmount()+" to "+
 												p.getName() + "\n";
 				}
