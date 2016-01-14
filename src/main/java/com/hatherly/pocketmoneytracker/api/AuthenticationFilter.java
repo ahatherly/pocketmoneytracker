@@ -29,8 +29,7 @@ public class AuthenticationFilter implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;
          
         String uri = req.getRequestURI();
-        //Logger.trace("Requested Resource::"+uri);
-        System.out.println("Requested Resource::"+uri);
+        //System.out.println("Requested Resource::"+uri);
         
         if(uri.endsWith("login") || uri.endsWith(".js") || uri.endsWith(".css")) {
         	// pass the request along the filter chain

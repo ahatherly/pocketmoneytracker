@@ -30,7 +30,7 @@ public class PayWeeklyPocketMoney {
 		
 		PersonList l = MongoPeople.getPeople();
 		for (Person p : l.getPeople()) {
-			if (p.getDayOfWeekPocketMoneyPaid() == day) {
+			if (p.getDayOfWeekPocketMoneyPaid() == day && p.getWeeklyPocketMoneyAmount()>0) {
 				String key = date_key + "_" + p.getId();
 				Transaction existing_txn = MongoTransactions.getTransaction(key);
 				if (existing_txn == null) {

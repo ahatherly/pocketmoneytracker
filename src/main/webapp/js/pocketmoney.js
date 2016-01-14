@@ -112,8 +112,19 @@ function updatePeople(data) {
 	var peopleList = data['people'];
 	var admin=$('#appMenu').attr('admin');
 	var person_id=$('#appMenu').attr('person_id');
+	var id_to_append_person_to = '';
 	
 	for (n=0; n<peopleList.length; n++) {
+		// Add person section
+		var content = '<div class="large-6 medium-6 columns">'+
+							'<p id="person'+(n+1)+'"><img src="img/spinner.gif"/></p>'+
+							'<p id="person'+(n+1)+'-transactions"><img src="img/spinner.gif"/></p></div>'
+		if (n%2 == 0) {
+			$('#mainBody').append('<div class="row" id="personRow-'+(n/2)+'">');
+			id_to_append_person_to = 'personRow-'+(n/2);
+		}
+		$('#'+id_to_append_person_to).append(content);
+		
 		// Update the person section
 		if (admin == "true") {
 			loadSection('person_admin','person'+(n+1), peopleList[n], true);
