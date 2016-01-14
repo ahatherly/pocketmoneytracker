@@ -5,17 +5,8 @@
 <%@include file="includes/menu.jspf" %>
 
 <div id="mainBody">
-	<!-- <div class="row">
-		<div class="large-6 medium-6 columns">
-		<p id="person1"><img src="img/spinner.gif"/></p>
-		<p id="person1-transactions"><img src="img/spinner.gif"/></p>
-		</div>
-		<div class="large-6 medium-6 columns">
-		<p id="person2"><img src="img/spinner.gif"/></p>
-		<p id="person2-transactions"><img src="img/spinner.gif"/></p>
-		</div>
-	</div>-->
 </div>
+
 <div id="transactionModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
 	  <h2 id="modalTitle">Add a transaction</h2>
 	  

@@ -179,7 +179,7 @@
             prom;
 
         prom = new Promise(function (resolve, reject) {
-            img.setAttribute('crossOrigin', 'anonymous');
+            //img.setAttribute('crossOrigin', 'anonymous');
             img.onload = function () {
                 setTimeout(function () {
                     resolve(img);

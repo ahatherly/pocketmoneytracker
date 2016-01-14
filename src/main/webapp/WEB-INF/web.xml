@@ -4,7 +4,7 @@
 
 <web-app>
   <display-name>Pocket Money Tracker</display-name>
-
+	 
   <filter>
     <filter-name>AuthenticationFilter</filter-name>
     <filter-class>com.hatherly.pocketmoneytracker.api.AuthenticationFilter</filter-class>
@@ -13,7 +13,7 @@
     <filter-name>AuthenticationFilter</filter-name>
     <url-pattern>*</url-pattern>
   </filter-mapping>
-  
+   
   <servlet>
     <servlet-name>People</servlet-name>
     <servlet-class>com.hatherly.pocketmoneytracker.api.RetrievePeople</servlet-class>
