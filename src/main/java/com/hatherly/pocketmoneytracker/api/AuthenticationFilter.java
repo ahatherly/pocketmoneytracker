@@ -29,7 +29,7 @@ public class AuthenticationFilter implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;
          
         String uri = req.getRequestURI();
-        System.out.println("Requested Resource::"+uri);
+        //System.out.println("Requested Resource::"+uri);
         
         if(uri.endsWith("login") || uri.endsWith(".js") || uri.endsWith(".css")) {
         	// pass the request along the filter chain
@@ -48,14 +48,14 @@ public class AuthenticationFilter implements Filter {
 	                chain.doFilter(request, response);
 	            } else {
 	            	//Logger.info("Unauthorized access request");
-	            	System.out.println("Unauthorized access request");
+	            	//System.out.println("Unauthorized access request");
 	            	request.setAttribute("Message", "Please log in");
 					RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 					rd.forward(request, response);
 	            }
 	        } else {
 	        	//Logger.info("Session timed out");
-	        	System.out.println("Session timed out");
+	        	//System.out.println("Session timed out");
 	        	request.setAttribute("Message", "Session timed out - please log in again");
 				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 				rd.forward(request, response);

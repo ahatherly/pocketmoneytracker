@@ -10,7 +10,10 @@
 </footer>
 <script>
       $( "#logout-button" ).click(doLogout);
-      $( "#user-config-button" ).click(function() {
+      $( "#passwords-button" ).click(function() {
     	  document.location.href = './user.jsp';
+      });
+      $( "#users-button" ).click(function() {
+    	  document.location.href = './accounts.jsp';
       });
 </script>
