@@ -31,7 +31,7 @@ public class AuthenticationFilter implements Filter {
         String uri = req.getRequestURI();
         //System.out.println("Requested Resource::"+uri);
         
-        if(uri.endsWith("login") || uri.endsWith(".js") || uri.endsWith(".css")) {
+        if(uri.endsWith("login") || uri.endsWith("scheduler") || uri.endsWith(".js") || uri.endsWith(".css")) {
         	// pass the request along the filter chain
             chain.doFilter(request, response);
         } else {
