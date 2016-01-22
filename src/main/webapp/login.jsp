@@ -40,6 +40,13 @@
    	  // Capture enter key press in any of the login fields to initiate login
       $('#username').keyup(function(event){ if(event.keyCode == 13){ doLogin(); } });
       $('#password').keyup(function(event){ if(event.keyCode == 13){ doLogin(); } });
+      
+      $(document).ready(function() {
+    	  var message="<%= request.getAttribute("Message") %>";
+    	  if (message.length > 0) {
+    		  $("#login-messages").html('<div data-alert class="alert-box info radius">'+message+'</div>');
+    	  }
+      });
     </script>
 </body>
 </html>

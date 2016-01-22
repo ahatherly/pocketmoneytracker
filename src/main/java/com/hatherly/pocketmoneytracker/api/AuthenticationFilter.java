@@ -55,9 +55,10 @@ public class AuthenticationFilter implements Filter {
 	            	// Not logged in
 	        		boolean firstUse = Mongo.checkForFirstUseOfDatabase();
 	        		if (firstUse) {
-	        			request.setAttribute("firstUse", "true");
+	        			request.setAttribute("Message", "This is the first time this application has been used against this database. Please login with username: admin, password: password, then change your password in the logins menu.");
+	        		} else {
+	        			request.setAttribute("Message", "Please log in");
 	        		}
-	            	request.setAttribute("Message", "Please log in");
 					RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
 					rd.forward(request, response);
 	            }
@@ -65,9 +66,10 @@ public class AuthenticationFilter implements Filter {
 	        	// Session timed out
 	        	boolean firstUse = Mongo.checkForFirstUseOfDatabase();
         		if (firstUse) {
-        			request.setAttribute("firstUse", "true");
+        			request.setAttribute("Message", "This is the first time this application has been used against this database. Please login with username: admin, password: password, then change your password in the logins menu.");
+        		} else {
+        			request.setAttribute("Message", "Session timed out - please log in again");
         		}
-	        	request.setAttribute("Message", "Session timed out - please log in again");
 				RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
 				rd.forward(request, response);
 	        }

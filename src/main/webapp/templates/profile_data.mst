@@ -1,6 +1,6 @@
 			<form action="updatePerson" method="post">
 			    <fieldset>
-				    <legend>Person Details</legend>
+				    <legend>Account Details</legend>
 				    <input type="hidden" name="person_id" value="{{id}}" />
 				    <label>Name:
 					      <input type="text" name="name" value="{{name}}" placeholder="Enter the name of the person...">
