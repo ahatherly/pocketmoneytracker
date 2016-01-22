@@ -55,7 +55,6 @@ public class DeletePerson extends HttpServlet {
 		if (session.getAttribute("admin").equals("true")) {
 			String person_id = readParameter(request, "person_id");
 			if (person_id != null) {
-				System.out.println("Deleting: "+person_id);
 				MongoPeople.deletePerson(person_id);
 				MongoTransactions.deleteAllTransactionForPerson(person_id);
 			}

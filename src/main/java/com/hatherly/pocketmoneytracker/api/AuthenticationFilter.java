@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.hatherly.pocketmoneytracker.mongodb.Mongo;
+
 public class AuthenticationFilter implements Filter {
 	private ServletContext context;
     
@@ -50,15 +52,21 @@ public class AuthenticationFilter implements Filter {
 	            	// pass the request along the filter chain
 	                chain.doFilter(request, response);
 	            } else {
-	            	//Logger.info("Unauthorized access request");
-	            	//System.out.println("Unauthorized access request");
+	            	// Not logged in
+	        		boolean firstUse = Mongo.checkForFirstUseOfDatabase();
+	        		if (firstUse) {
+	        			request.setAttribute("firstUse", "true");
+	        		}
 	            	request.setAttribute("Message", "Please log in");
 					RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
 					rd.forward(request, response);
 	            }
 	        } else {
-	        	//Logger.info("Session timed out");
-	        	//System.out.println("Session timed out");
+	        	// Session timed out
+	        	boolean firstUse = Mongo.checkForFirstUseOfDatabase();
+        		if (firstUse) {
+        			request.setAttribute("firstUse", "true");
+        		}
 	        	request.setAttribute("Message", "Session timed out - please log in again");
 				RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
 				rd.forward(request, response);

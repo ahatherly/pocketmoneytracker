@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.hatherly.pocketmoneytracker.mongodb.Mongo;
 import com.hatherly.pocketmoneytracker.mongodb.MongoLogins;
 
 import static com.hatherly.pocketmoneytracker.api.ServletUtils.readParameter;
