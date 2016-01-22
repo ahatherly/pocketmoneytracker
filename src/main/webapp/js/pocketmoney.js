@@ -58,13 +58,13 @@ function updatePeople(data) {
 	var admin=$('#appMenu').attr('admin');
 	var person_id=$('#appMenu').attr('person_id');
 	var id_to_append_person_to = '';
-	
+
 	if (peopleList.length == 0) {
 		$('#mainBody').append('<div id="mainBodyRow" class="row">')
 		$('#mainBodyRow').append('<div id="mainBodyCol" class="large-12 medium-12 columns center">')
 		$('#mainBodyCol').append("<p>You don't have any accounts yet - click 'Accounts' from the menu above, then click the 'Add an account' button.</p>");
 	}
-	
+
 	for (n=0; n<peopleList.length; n++) {
 		// Add person section
 		var content = '<div class="large-6 medium-6 columns">'+
