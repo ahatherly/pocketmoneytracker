@@ -41,61 +41,6 @@ function updateTransactionValues(person_id, balance) {
 	$("input[name='person_id']").val(person_id);
 }
 
-// Load user page data
-function loadUserData() {
-	var doc = document.documentElement;
-	doc.setAttribute('data-useragent', navigator.userAgent);
-	
-	$.ajax({
-		dataType: "json",
-		url: "users"
-	})
-	.done(updateUser);
-}
-
-function updateUser(data) {
-	var username = $('#mainBody').attr('username');
-	
-	var userList = data['logins'];
-	for (n=0; n<userList.length; n++) {
-		var user = userList[n];
-		// Add a new div and load the user details template into it
-		$('#users').append('<div id=user_'+n+'></div>');
-		loadSection('user','user_'+n,user,false);
-	}
-}
-
-
-// Loads profile data
-function loadProfileData() {
-	var doc = document.documentElement;
-	doc.setAttribute('data-useragent', navigator.userAgent);
-	
-	$.ajax({
-		dataType: "json",
-		url: "people"
-	})
-	.done(updateProfile);
-}
-
-function updateProfile(data) {
-	var person_id = $('#mainBody').attr('personID');
-	var peopleList = data['people'];
-	var admin=$('#appMenu').attr('admin');
-	
-	for (n=0; n<peopleList.length; n++) {
-		var person = peopleList[n];
-		if (person.id == person_id) {
-			// Update the profile section
-			if (admin == "true") {
-				loadSection('profile_admin','profileData', person, false);
-			} else {
-				loadSection('profile','profileData', person, false);
-			}
-		}
-	}
-}
-
 // Loads all person and transaction data
 function loadData() {
 	var doc = document.documentElement;
@@ -127,11 +72,11 @@ function updatePeople(data) {
 		
 		// Update the person section
 		if (admin == "true") {
-			loadSection('person_admin','person'+(n+1), peopleList[n], true);
+			loadSection('person_admin','person'+(n+1), peopleList[n], null);
 		} else if (person_id == peopleList[n].id) {
-			loadSection('person_me','person'+(n+1), peopleList[n], true);
+			loadSection('person_me','person'+(n+1), peopleList[n], null);
 		} else {
-			loadSection('person','person'+(n+1), peopleList[n], true);
+			loadSection('person','person'+(n+1), peopleList[n], null);
 		}
 		// Load the transactions
 		loadTransactions(n+1, peopleList[n]['id'], 0);
@@ -158,10 +103,10 @@ function loadTransactions(index, pid, offset) {
 function updateTransactions(index, data) {
 	var sectionName = 'person'+index+'-transactions';
 	data.index = index;
-	loadSection('transactions',sectionName, data);
+	loadSection('transactions',sectionName, data, addPagers);
 }
 
-function loadSection(templateName, elementName, data, loadPagers) {
+function loadSection(templateName, elementName, data, postRenderFunction) {
 	  data.renderFunctions = renderFunctions;
 	  
 	  $.get('templates/'+templateName+'.mst', function(template) {
@@ -169,8 +114,8 @@ function loadSection(templateName, elementName, data, loadPagers) {
 		    $('#'+elementName).html(rendered);
 			// Apply currency formatting
 			$('.currency').formatCurrency({ colorize:true, region: 'en-GB' });
-			if (loadPagers) {
-				addPagers(data);
+			if (postRenderFunction != null) {
+				postRenderFunction(data);
 			}
 	  });
 }

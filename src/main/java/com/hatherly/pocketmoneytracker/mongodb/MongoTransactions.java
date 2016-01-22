@@ -55,6 +55,10 @@ public class MongoTransactions {
 	public static void deleteTransaction(String id) {
 		Mongo.transactions().deleteOne(eq("_id", id));
 	}
+	
+	public static void deleteAllTransactionForPerson(String person_id) {
+		Mongo.transactions().deleteMany(eq("personID", person_id));
+	}
 
 	public static TransactionList getTransactions(String personID, int offset, int count) {
 		ArrayList transactions = new ArrayList();

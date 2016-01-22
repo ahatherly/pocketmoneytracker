@@ -5,7 +5,19 @@
 <%@include file="includes/menu.jspf" %>
 
 <div id="mainBody" personID="<%= request.getParameter("person_id") %>">
-	 <div id="profileData"></div>
+	 <div class="row">
+		<div class="large-6 columns">
+			<div id="profilePicture"></div>
+		</div>
+		<div class="large-6 columns">
+			<div id="profileData"></div>
+		</div>
+	</div>
+</div>
+
+<div id="deleteAccountModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+	  <div id="profileDeleteConfirmForm"></div>
+	  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>
 
 <%@include file="includes/footer.jspf" %>

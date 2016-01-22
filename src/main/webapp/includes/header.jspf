@@ -22,6 +22,9 @@
 <script src="js/renderFunctions.js"></script>
 <script src="js/mustache.js"></script>
 <script src="js/pocketmoney.js"></script>
+<script src="js/pocketmoney-profile.js"></script>
+<script src="js/pocketmoney-user.js"></script>
+<script src="js/pocketmoney-accounts.js"></script>
 <link rel="stylesheet" href="css/croppie.css" />
 <script src="js/croppie.js"></script>
 </head>

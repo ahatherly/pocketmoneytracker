@@ -47,6 +47,10 @@
     <servlet-class>com.hatherly.pocketmoneytracker.api.UpdatePerson</servlet-class>
   </servlet>
   <servlet>
+    <servlet-name>DeletePerson</servlet-name>
+    <servlet-class>com.hatherly.pocketmoneytracker.api.DeletePerson</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>Login</servlet-name>
     <servlet-class>com.hatherly.pocketmoneytracker.api.Login</servlet-class>
   </servlet>
@@ -90,6 +94,10 @@
   <servlet-mapping>
     <servlet-name>UpdatePerson</servlet-name>
     <url-pattern>/updatePerson</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeletePerson</servlet-name>
+    <url-pattern>/deletePerson</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Login</servlet-name>

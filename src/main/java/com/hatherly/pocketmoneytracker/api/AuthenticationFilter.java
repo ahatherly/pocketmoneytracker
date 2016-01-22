@@ -27,7 +27,10 @@ public class AuthenticationFilter implements Filter {
  
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
-         
+        
+        //res.setHeader("Cache-Control", "private, no-store, no-cache, must-revalidate");
+        //res.setHeader("Pragma", "no-cache");
+        
         String uri = req.getRequestURI();
         //System.out.println("Requested Resource::"+uri);
         
@@ -50,14 +53,14 @@ public class AuthenticationFilter implements Filter {
 	            	//Logger.info("Unauthorized access request");
 	            	//System.out.println("Unauthorized access request");
 	            	request.setAttribute("Message", "Please log in");
-					RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+					RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
 					rd.forward(request, response);
 	            }
 	        } else {
 	        	//Logger.info("Session timed out");
 	        	//System.out.println("Session timed out");
 	        	request.setAttribute("Message", "Session timed out - please log in again");
-				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
 				rd.forward(request, response);
 	        }
         }

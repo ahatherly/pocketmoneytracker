@@ -2,7 +2,7 @@
 		<div class="large-12 columns">
 			<form action="changePassword" method="post">
 			    <fieldset>
-				    <legend>User: {{login}}</legend>
+				    <legend>Login: {{login}}</legend>
 					<div class="small-7 columns">
 						<input type="hidden" name="username" value="{{login}}">
 						<label>New password:

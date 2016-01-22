@@ -9,17 +9,26 @@
 
 		<div class="row">
 			<div class="large-12 columns">
-				Coming Soon..
+				<ul class="button-group round">
+			  		<li><a href="#" class="small button"
+						data-reveal-id="addAccountModal">Add an Account</a></li>
+				</ul>
 			</div>
 		</div>
 	 </div>
+</div>
+
+<div id="addAccountModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+	  <h2 id="modalTitle">Add an account</h2>
+	  <div id="profileDetails"></div>
+	  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>
 
 <%@include file="includes/footer.jspf" %>
 
 <script>
       $(document).foundation();
-      //$(document).ready(loadUserData);
+      $(document).ready(loadAccounts);
 </script>
 </body>
 </html>

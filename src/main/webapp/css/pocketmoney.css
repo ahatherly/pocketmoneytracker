@@ -7,3 +7,6 @@
 td, th { font-size:0.8em; background:#c7e0ff; }
 .balance { font-size:1.8em; }
 .missingProfileButtonSpacer { height:64px; }
+table { margin-bottom: 0px; }
+.pager-row { padding-bottom: 15px; }
+div#profileDelete { float: right; }

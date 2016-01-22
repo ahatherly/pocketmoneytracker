@@ -26,13 +26,13 @@ import static com.hatherly.pocketmoneytracker.api.ServletUtils.readDoubleParamet
 /**
  * Servlet implementation
  */
-public class UpdatePerson extends HttpServlet {
+public class DeletePerson extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdatePerson() {
+    public DeletePerson() {
         super();
     }
 
@@ -54,23 +54,11 @@ public class UpdatePerson extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		if (session.getAttribute("admin").equals("true")) {
 			String person_id = readParameter(request, "person_id");
-			String name = readParameter(request, "name");
-			double amount = readDoubleParameter(request, "weeklyPocketMoneyAmount");
-			int day = readIntParameter(request, "dayOfWeekPocketMoneyPaid");
-			
-			Person p = null;
-			if (person_id == null) {
-				// New person
-				p = new Person(name, 0, amount, day);
-				MongoPeople.updatePerson(p);
-			} else {
-				// Update existing person
-				p = MongoPeople.getPerson(person_id);
-				p.setName(name);
-				p.setWeeklyPocketMoneyAmount(amount);
-				p.setDayOfWeekPocketMoneyPaid(day);
+			if (person_id != null) {
+				System.out.println("Deleting: "+person_id);
+				MongoPeople.deletePerson(person_id);
+				MongoTransactions.deleteAllTransactionForPerson(person_id);
 			}
-			MongoPeople.updatePerson(p);
 		}
 		response.sendRedirect("index.jsp");
 	}

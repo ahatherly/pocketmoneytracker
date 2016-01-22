@@ -45,6 +45,10 @@ public class MongoPeople {
 		}
 	}
 	
+	public static void deletePerson(String id) {
+		Mongo.people().deleteOne(eq("_id", id));
+	}
+	
 	public static PersonList getPeople() {
 		ArrayList<Person> people = new ArrayList<Person>();
 		MongoCursor<Document> cursor = Mongo.people().find().iterator();

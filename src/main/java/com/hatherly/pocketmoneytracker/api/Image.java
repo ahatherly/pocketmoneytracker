@@ -31,7 +31,6 @@ public class Image extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//HttpSession session = request.getSession(false);
 		//Image i = (Image)session.getAttribute("imageData");
-		System.out.println("Requested Image...");
 		String image_id = readParameter(request, "image_id");
 		
 		if (image_id == null) {

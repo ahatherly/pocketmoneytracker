@@ -18,7 +18,7 @@
 	{{/transactions}}
   </tbody>
 </table>
-<div class="row">
+<div class="row pager-row">
 	<div class="large-2 columns">
 		<div id="previous-{{index}}">&nbsp;</div>
 	</div>

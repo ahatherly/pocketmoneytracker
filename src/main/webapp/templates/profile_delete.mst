@@ -1,0 +1,7 @@
+			<h2 id="modalTitle">Are you sure you want to delete the '{{name}}' account?</h2>
+			<p>You will also loose all transactions for this account - this cannot be undone!</p>
+			<form action="deletePerson" method="post">
+				    <input type="hidden" name="person_id" value="{{id}}" />
+				    <input type="submit" value="Delete Account" class="button alert" />
+			   	</fieldset>
+			</form>
