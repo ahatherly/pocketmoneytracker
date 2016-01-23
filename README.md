@@ -7,6 +7,8 @@ This is a simple web-based application to allow you to keep track of pocket mone
 
 The children can also be given logins, and they can use these to view their balance and transactions, and they can even update their own profile picture!
 
+This software is open source under the Apache 2.0 license.
+
 Installation
 ============
 
@@ -23,6 +25,13 @@ mvn install
 ```
 
 Now, deploy the war file into a servlet container (e.g. tomcat).
+In order for the weekly pocket money payments to be paid automatically, you will need to schedule a cron job (or equivalent windows task) to access this URL: http://<base-url>/pocketmoneytracker/scheduler
+
+An example CRON line would be:
+
+```
+0 2 * * * /usr/bin/wget http://127.0.0.1:8080/pocketmoneytracker/scheduler > /dev/null 2>&1
+```
 
 Database Setup
 ==============
