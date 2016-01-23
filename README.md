@@ -1,6 +1,8 @@
 Pocket Money Tracker
 ====================
 
+![Screenshot](screenshot.png)
+
 This is a simple web-based application to allow you to keep track of pocket money for any number of children. It works a bit like a bank, with individual accounts that are credited with a specified amount each week (on the day you specify). As an administrative user you can also add money as a reward for good behaviour, and subtract money for bad behaviour. If you give your child cash from their pocket money "account" you can record that as a "withdrawal", and their balance will be reduced accordingly.
 
 The children can also be given logins, and they can use these to view their balance and transactions, and they can even update their own profile picture!
