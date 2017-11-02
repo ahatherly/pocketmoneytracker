@@ -74,3 +74,11 @@ docker run --name pocketmoneytracker --restart=always -p 8088:8080 --link mongod
 
 You should now be able to test it out by visiting: http://localhost:8088/pocketmoneytracker/
 
+Don't forget to add a cron entry to schedule the regular pocket money payments! In the above example, this would look like this:
+
+```
+0 2 * * * /usr/bin/wget http://127.0.0.1:8088/pocketmoneytracker/scheduler > /dev/null 2>&1
+```
+
+Or if you really wanted to go the whole hog, you could create another container just to run cron.. but it's probably easier to just use the host machine's cron in this case.
+
